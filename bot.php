@@ -19,68 +19,65 @@ $config = array(
   /___________\
    
 */
-$sys = new sys;
+global $sys;
+$sys = new sys();
+global $bot;
 $bot = new bot($config);
 class sys{
 	function trace($msg){
-		echo(date("h:i:s", time())." - ".$msg);
+		echo(date("h:i:s", time())." - ".$msg."\r\n");
 	}
 	function error($msg,$level){
 		switch($level){
 			case 1:
-				echo(date("h:i:s", time())." [NOTICE] - ".$msg);
+				echo(date("h:i:s", time())." [NOTICE] - ".$msg."\r\n");
 				break;
 			case 2:
-				echo(date("h:i:s", time())." [WARNING] - ".$msg);
+				echo(date("h:i:s", time())." [WARNING] - ".$msg."\r\n");
 				break;
 			case 3:
-				echo(date("h:i:s", time())." [ERROR] - ".$msg);
+				echo(date("h:i:s", time())." [ERROR] - ".$msg."\r\n");
 				break;
 			case 4:
-				echo(date("h:i:s", time())." [FATAL] - ".$msg);
+				echo(date("h:i:s", time())." [FATAL] - ".$msg."\r\n");
 				break;
 			default:
-				echo(date("h:i:s", time())." [UNKNOWN ERROR] - ".$msg);
+				echo(date("h:i:s", time())." [UNKNOWN ERROR] - ".$msg."\r\n");
 				break;
 		}
 	}
-	function ident(){
-		$res = $this->raw("NICK ".$bot->$config['nick']);
-		if(strrpos($res, $bot->$config['nick']." :Nickname is already in use.") !== false){
+	function ident($bot){
+		$res = $this->raw("NICK ".$bot->config['nick'],$bot);
+		$this->trace("test");
+		if(strrpos($res, $bot->config['nick']." :Nickname is already in use.") !== false){
 			$this->error("Nickname already in use!", 4);
 		}else{
-			$this->raw("USER ".$bot->$config['nick']." 8 * : ".$bot->$config['real']);
+			$res = $this->raw("USER ".$bot->config['nick']." 8 * : ".$bot->config['real'],$bot);
 		}
+		$this->trace("test");
 	}
-	function raw($com){
-		fwrite($bot->$fp, $com);
-		return fgets($bot->$fp);
+	function raw($com, $bot){
+		fwrite($bot->fp, $com);
+		return fgets($bot->fp);
 	}
 }
 class bot{
+	var $sys;
 	var $config = array();
 	var $fp;
 	function __construct($config){
-		$this->main($config);
+		$this->sys = new sys;
+		$this->config = $config;
+		$this->main();
 	}
-	function init($config){
-		if(is_array($this->$config)){
-			foreach($config as $k => $v){
-				$this->$config[$k] = $v;
-			}
-		}else{
-			$sys->error("Cannot create configuration array!", 4);
-		}
-	}
-	function main($c){
-		$this->init($c);
-		$this->$fp = fsockopen($this->$config['server'], $this->$config['port']);
-		if(!$fp){
+	function main(){
+		$this->fp = fsockopen($this->config['server'], $this->config['port']);
+		if(!$this->fp){
 			echo("Cannot connect to the server");
 			die();
 		}
-		$sys->trace("Connected to server");
-		$sys->trace("Identifying");
-		$sys->ident();
+		$this->sys->trace("Connected to server");
+		$this->sys->trace("Identifying");
+		$this->sys->ident($this);
 	}	
 }
