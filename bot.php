@@ -19,18 +19,61 @@ $config = array(
   /___________\
    
 */
+$sys = new sys;
+$bot = new bot($config);
+class sys{
+	function construct(){
+	function trace($msg){
+		echo(date(h:i:s, time())." - ".$msg);
+	}
+	function error($msg,$level){
+		switch($level){
+			case 1:
+				echo(date(h:i:s, time())." [NOTICE] - ".$msg);
+				break;
+			case 2:
+				echo(date(h:i:s, time())." [WARNING] - ".$msg);
+				break;
+			case 3:
+				echo(date(h:i:s, time())." [ERROR] - ".$msg);
+				break;
+			case 4:
+				echo(date(h:i:s, time())." [FATAL] - ".$msg);
+				break;
+			default:
+				echo(date(h:i:s, time())." [UNKNOWN ERROR] - ".$msg);
+				break;
+		}
+	}
+	function ident($config){
+		$res = $this->raw("NICK ".$bot->$config['nick']);
+		if(strrpos($res, $bot->$config['nick']." :Nickname is already in use.") !== false){
+			$this->error("Nickname already in use!", 4);
+		}else{
+			$this->raw("USER ".$bot->$config['nick']." 8 * : ".$bot->$config['real']);
+		}
+	}
+	function raw($com){
+		fwrite($bot->$fp, $com);
+		return fgets($bot->$fp);
+	}
+}
 class bot{
 	$config = array();
+	$fp = "";
 	function __construct($config){
 		$this->$config = $config;
 		$this->main();
 	}
 	function main(){
-		$fp = fsockopen($this->$config['server'], $this->$config['port']);
+		$this->$fp = fsockopen($this->$config['server'], $this->$config['port']);
 		if(!$fp){
 			echo("Cannot connect to the server");
 			die();
 		}
+		$sys->trace("Connected to server");
+		$sys->trace("Identifying");
+		$sys->send
 	}
 		
 }
