@@ -86,8 +86,10 @@ class IRCBot {
 	}
 	function get_level($nick){
 		include("./core/admins.php");
+		var_dump($admins);
 		foreach($admins as $n => $l){
 			if($n == $nick){
+				echo("true");
 				$level = $l;
 			}
 		}
