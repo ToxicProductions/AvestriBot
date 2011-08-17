@@ -66,6 +66,7 @@ class IRCBot {
 		}
 	}
 	function main($config){
+		error_reporting("E_FATAL");
 		$data = fgets($this->socket, 256);
 		echo($data);
 		flush();
@@ -77,12 +78,12 @@ class IRCBot {
 		$host = $nick[1];
 		$host = explode(" PRIVMSG ", $host);
 		$host = $host[0];
-		$nick = $nick[0];
+		$nick = substr($nick[0],1);
 		$chan = $this->ex[2];
 		$command = str_replace(array(chr(10), chr(13)), "", $this->ex[3]);
 		$command = substr($command, 1);
 		include("./cmd/main.php");
-		$this->main($config);
+		$this->main($config); //WARNING: Do not remove this otherwise the bot will not function. Think of it as a poor mans loop.
 	}
 	function get_level($nick){
 		include("./core/admins.php");

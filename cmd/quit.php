@@ -1,5 +1,5 @@
 <?php
-if($this->get_level($nick) == 10){
+if($this->get_level($nick) > 9){
 	$this->send_data('QUIT', 'AvestriBot Coded by Toxic Productions Founders: GothX and GtoXic');
 	die();
 }else{
@@ -7,6 +7,6 @@ if($this->get_level($nick) == 10){
 	if($level == NULL){
 		$level = 0;
 	}
-	$this->send_data("PRIVMSG $chan :", "You are not authorised to do this, you must be level 10 or higher, you are level $level");
+	$this->send_data("PRIVMSG $chan :", "You are not authorised to do this, you must be level 10 or higher.");
 }
 ?>

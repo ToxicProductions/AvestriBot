@@ -18,5 +18,8 @@ switch($command){
 	case '@about':
 		include("./cmd/about.php");
 		break;
+	case '@whoami':
+		include("./cmd/whoami.php");
+		break;
 }
 ?>
