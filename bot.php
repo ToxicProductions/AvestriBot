@@ -44,7 +44,7 @@ class sys{
 				break;
 		}
 	}
-	function ident($config){
+	function ident(){
 		$res = $this->raw("NICK ".$bot->$config['nick']);
 		if(strrpos($res, $bot->$config['nick']." :Nickname is already in use.") !== false){
 			$this->error("Nickname already in use!", 4);
@@ -58,13 +58,22 @@ class sys{
 	}
 }
 class bot{
-	$config = array();
-	$fp = "";
+	var $config = array();
+	var $fp;
 	function __construct($config){
-		$this->$config = $config;
-		$this->main();
+		$this->main($config);
 	}
-	function main(){
+	function init($config){
+		if(is_array($this->$config)){
+			foreach($config as $k => $v){
+				$this->$config[$k] = $v;
+			}
+		}else{
+			$sys->error("Cannot create configuration array!", 4);
+		}
+	}
+	function main($c){
+		$this->init($c);
 		$this->$fp = fsockopen($this->$config['server'], $this->$config['port']);
 		if(!$fp){
 			echo("Cannot connect to the server");
@@ -72,7 +81,6 @@ class bot{
 		}
 		$sys->trace("Connected to server");
 		$sys->trace("Identifying");
-		$sys->send
-	}
-		
+		$sys->ident();
+	}	
 }
