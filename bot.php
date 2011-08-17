@@ -1,12 +1,12 @@
 <?php
 set_time_limit(0); //Make sure the bot doesn't bomb out from execution timeouts
 $config = array(
-"nick" = "AvestriBot", //Bot Nickname
-"pass" = "", //Nickserv Password
-"real" = "AvestriBot", //The real name for the bot
-"server" = "irc.x10hosting.com", //The IRC Server (No support for password protected servers yet)
-"port" = 6667, //server port
-"chan" = "#avestribot", //Channel to join
+"nick" => "AvestriBot", //Bot Nickname
+"pass" => "", //Nickserv Password
+"real" => "AvestriBot", //The real name for the bot
+"server" => "irc.x10hosting.com", //The IRC Server (No support for password protected servers yet)
+"port" => 6667, //server port
+"chan" => "#avestribot", //Channel to join
 );
 //There should be no need to edit beyond this point. All commands are in ./cmd/main.php
 /*   
@@ -22,26 +22,25 @@ $config = array(
 $sys = new sys;
 $bot = new bot($config);
 class sys{
-	function construct(){
 	function trace($msg){
-		echo(date(h:i:s, time())." - ".$msg);
+		echo(date("h:i:s", time())." - ".$msg);
 	}
 	function error($msg,$level){
 		switch($level){
 			case 1:
-				echo(date(h:i:s, time())." [NOTICE] - ".$msg);
+				echo(date("h:i:s", time())." [NOTICE] - ".$msg);
 				break;
 			case 2:
-				echo(date(h:i:s, time())." [WARNING] - ".$msg);
+				echo(date("h:i:s", time())." [WARNING] - ".$msg);
 				break;
 			case 3:
-				echo(date(h:i:s, time())." [ERROR] - ".$msg);
+				echo(date("h:i:s", time())." [ERROR] - ".$msg);
 				break;
 			case 4:
-				echo(date(h:i:s, time())." [FATAL] - ".$msg);
+				echo(date("h:i:s", time())." [FATAL] - ".$msg);
 				break;
 			default:
-				echo(date(h:i:s, time())." [UNKNOWN ERROR] - ".$msg);
+				echo(date("h:i:s", time())." [UNKNOWN ERROR] - ".$msg);
 				break;
 		}
 	}
