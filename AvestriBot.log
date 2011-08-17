@@ -1,0 +1,69 @@
+:irc.x10hosting.com 002 AvestriBot :Your host is irc.x10hosting.com, running version Unreal3.2.8
+:irc.x10hosting.com 003 AvestriBot :This server was created Wed Mar 25 2009 at 02:22:55 UTC
+:irc.x10hosting.com 004 AvestriBot irc.x10hosting.com Unreal3.2.8 iowghraAsORTVSxNCWqBzvdHtGp lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGj
+:irc.x10hosting.com 005 AvestriBot CMDS=KNOCK,MAP,DCCALLOW,USERIP UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=3000 CHANLIMIT=#:3000 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:irc.x10hosting.com 005 AvestriBot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTG NETWORK=x10Hosting CASEMAPPING=ascii EXTBAN=~,cqnr ELIST=MNUCT :are supported :irc.x10hosting.com 005 AvestriBot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:irc.x10hosting.com 251 AvestriBot :There are 33 users and 16 invisible on 2 servers
+:irc.x10hosting.com 252 AvestriBot 10 :operator(s) online
+:irc.x10hosting.com 254 AvestriBot 24 :channels formed
+:irc.x10hosting.com 255 AvestriBot :I have 36 clients and 0 servers
+:irc.x10hosting.com 265 AvestriBot :Current Local Users: 36  Max: 985
+:irc.x10hosting.com 266 AvestriBot :Current Global Users: 49  Max: 985
+:irc.x10hosting.com 375 AvestriBot :- irc.x10hosting.com Message of the Day - 
+:irc.x10hosting.com 372 AvestriBot :- 27/11/2010 23:42
+:irc.x10hosting.com 372 AvestriBot :-         .                  ,,:.
+:irc.x10hosting.com 372 AvestriBot :-        GGG            :ii:
+:irc.x10hosting.com 372 AvestriBot :- jtt   iGGGG       jf.
+:irc.x10hosting.com 372 AvestriBot :- .EEE  iGGGG    :Gi           Et
+:irc.x10hosting.com 372 AvestriBot :-   EEE  GGG  tG: .:    .,:    Et                    .j   f
+:irc.x10hosting.com 372 AvestriBot :-   iEEG    ;Gi  iGG   jGGGG,  Et                    .E  ;E               .
+:irc.x10hosting.com 372 AvestriBot :-     EEf tG;   :GfG  GG.  GG  Et                    .E                 :Ej
+:irc.x10hosting.com 372 AvestriBot :-     Gj GG       fG  GG   tG  EiEEE    EEEE.  jEEE ,EEE :E  EDEEEt  .GEED
+:irc.x10hosting.com 372 AvestriBot :-      ,GG        fG  GG   tG  EE  tE  EL  LE  E. ;  .E  :E  EE  jE  EL.EE
+:irc.x10hosting.com 372 AvestriBot :-     :GG :.      fG  GG   tG  Ei   E.,E    E, E,    .E  :E  EE   E. E  :E
+:irc.x10hosting.com 372 AvestriBot :-     GGGiEEj     fG  GG   tG  Et   E.fE    Lf GEEL  .E  :E  EE   E. E  ,E
+:irc.x10hosting.com 372 AvestriBot :-     GGt tEE     fG  GG   tG  Et   E.jE    Dj  .EE  .E  :E  EE   E. EE;EE
+:irc.x10hosting.com 372 AvestriBot :-    :GGt  EEE    fG  GG   fG  Et   E..E    E:    E: .E  :E  EE   E. iEEEE
+:irc.x10hosting.com 372 AvestriBot :-    .GGf   ,EE   fG   GGGGGG  Et   E. iEEEEE  EGGE   ED :E  EE   E.  EE:
+:irc.x10hosting.com 372 AvestriBot :-     GGG    DEG  fG    LGG;   f;   f.  jEEj   tEE;   GD .f  ff   f.  DEEE
+:irc.x10hosting.com 372 AvestriBot :-     LGG                                                                E
+:irc.x10hosting.com 372 AvestriBot :-      GGG                                                           EEEEE
+:irc.x10hosting.com 372 AvestriBot :-       ,GG 
+:irc.x10hosting.com 372 AvestriBot :-        tGG
+:irc.x10hosting.com 372 AvestriBot :-          iGt
+:irc.x10hosting.com 372 AvestriBot :-            LG
+:irc.x10hosting.com 372 AvestriBot :-              .jf
+:irc.x10hosting.com 372 AvestriBot :-                 ;i
+:irc.x10hosting.com 372 AvestriBot :-                              
+:irc.x10hosting.com 372 AvestriBot :- So, you need a webhost eh? Check us out at 
+:irc.x10hosting.com 372 AvestriBot :- http://www.x10hosting.com
+:irc.x10hosting.com 372 AvestriBot :- We offer a full range of web hosting options, we're sure you'll
+:irc.x10hosting.com 372 AvestriBot :- find something to fit your needs. We offer very affordable hosting
+:irc.x10hosting.com 372 AvestriBot :- ranging from free to low-monthly fees. And, you won't find a host
+:irc.x10hosting.com 372 AvestriBot :- anywhere with better support!
+:irc.x10hosting.com 372 AvestriBot :- 
+:irc.x10hosting.com 372 AvestriBot :-  	..::Administrators::..
+:irc.x10hosting.com 372 AvestriBot :- 		Corey (OWNER)
+:irc.x10hosting.com 372 AvestriBot :- 		Bryon
+:irc.x10hosting.com 372 AvestriBot :- 
+:irc.x10hosting.com 372 AvestriBot :- 	..::Exective Team::..
+:irc.x10hosting.com 372 AvestriBot :- 		Anna
+:irc.x10hosting.com 372 AvestriBot :- 		Syed
+:irc.x10hosting.com 372 AvestriBot :- 
+:irc.x10hosting.com 372 AvestriBot :- 	..::IRC Server Admin::..
+:irc.x10hosting.com 372 AvestriBot :- 		Paul (Sharky)
+:irc.x10hosting.com 372 AvestriBot :- 		Brandon
+:irc.x10hosting.com 372 AvestriBot :- 
+:irc.x10hosting.com 372 AvestriBot :- 	..::Account Managers::..
+:irc.x10hosting.com 372 AvestriBot :- 		Brandon  	
+:irc.x10hosting.com 372 AvestriBot :- 		Jarryd	
+:irc.x10hosting.com 372 AvestriBot :- 		Zubair 	
+:irc.x10hosting.com 372 AvestriBot :- 
+:irc.x10hosting.com 372 AvestriBot :- For the cool people in life. 
+:irc.x10hosting.com 372 AvestriBot :- Follow the /rules, and you'll be ok.
+:irc.x10hosting.com 376 AvestriBot :End of /MOTD command.
+:AvestriBot MODE AvestriBot :+sxG
+:irc.x10hosting.com 332 AvestriBot #avestribot :AvestriBot Development Channel || Coding: GtoXic, GothX (Founders of Toxic Productions). Formatting: GtoXic
+:irc.x10hosting.com 333 AvestriBot #avestribot GtoXic[laptop] 1313587246
+:irc.x10hosting.com 353 AvestriBot = #avestribot :AvestriBot ~GtoXic ~GothX &CIA-1 
+:irc.x10hosting.com 366 AvestriBot #avestribot :End of /NAMES list.
