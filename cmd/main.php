@@ -15,5 +15,8 @@ switch($command){
 	case '@quit':
 		include("./cmd/quit.php");
 		break;
+	case '@about':
+		include("./cmd/about.php");
+		break;
 }
 ?>
