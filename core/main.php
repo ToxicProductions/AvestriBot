@@ -1,15 +1,14 @@
 <?php
-error_reporting("E_FATAL");
 $data = fgets($this->socket, 256);
 echo($data);
 flush();
 $this->ex = explode(" ", $data);
 if($this->ex[0] == "PING"){
-	$this->send_data("PONG", $this->ex[1]);
+	$this->send_data("PONG ", $this->ex[1]);
 }
 $nick = explode("!", $this->ex[0]);
 $host = $nick[1];
-$host = explode(" PRIVMSG ", $host);
+$host = explode(" ", $host);
 $host = $host[0];
 $nick = substr($nick[0],1);
 $chan = $this->ex[2];

@@ -22,7 +22,9 @@ class IRCBot {
 	var $socket;
 	var $ex = array();
 	var $db;
+	var $gun = array(1 => 1, 2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1);
 	function __construct($config){
+		error_reporting("E_NONE");
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->db = mysql_connect("{$config['sqlhost']}:{$config['sqlport']}", $config['sqluser'], $config['sqlpass']) or die(mysql_error());
 		mysql_select_db("{$config['db_name']}") or die(mysql_error());
@@ -34,14 +36,15 @@ class IRCBot {
 		$this->main($config); //WARNING: Do not remove this otherwise the bot will not function. Think of it as a poor mans loop.
 	}
 	function login($config){
-	$this->send_data("USER", $config["nick"]." 8 * :".$config["name"]);
-	$this->send_data("NICK", $config["nick"]);
-	if(strrpos(fgets($this->socket, 256), $config['nick']." :Nickname is already in use.")){
-		$this->error("Nick in use", 4);
-		die();
+		$this->send_data("USER ", $config["nick"]." 8 * :".$config["name"]);
+		$this->send_data("NICK ", $config["nick"]);
+		if(strrpos(fgets($this->socket, 256), $config['nick']." :Nickname is already in use.")){
+			$this->error("Nick in use", 4);
+			die();
+		}
+		$this->send_data("PRIVMSG NickServ :IDENTIFY {$config['pass']}");
+		$this->join_channel($config["channel"]);
 	}
-	$this->join_channel($config["channel"]);
-}
 	function error($msg,$level){
 		switch($level){
 			case 1:
@@ -65,7 +68,6 @@ class IRCBot {
 		include("./core/admins.php");
 		foreach($admins as $n => $l){
 			if($n == $nick){
-				echo("true");
 				$level = $l;
 			}
 		}
@@ -79,7 +81,7 @@ class IRCBot {
 			fputs($this->socket, $cmd."\r\n");
 			echo date("h:i:s", time())." - ".$cmd."\r\n";
 		}else{
-			fputs($this->socket, $cmd." ".$msg."\r\n");
+			fputs($this->socket, $cmd.$msg."\r\n");
 			echo date("h:i:s", time())." - ".$cmd." ".$msg."\r\n";
 		}
 	}
@@ -87,11 +89,11 @@ class IRCBot {
 	function join_channel($channel){
 		if(is_array($channel)){
 			foreach($channel as $chan){
-				$this->send_data("JOIN", $chan);
+				$this->send_data("JOIN ", $chan);
 			}
 
 		}else{
-			$this->send_data("JOIN", $channel);
+			$this->send_data("JOIN ", $channel);
 		}
 	}
 	function query($q, $c = ""){

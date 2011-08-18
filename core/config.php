@@ -5,7 +5,7 @@ $config = array(
 "channel" => "#avestribot", //Channel
 "name"    => "AvestriBot", //Bot's Realname
 "nick"    => "AvestriBot", //Bot's Nickname
-"pass"    => "", //Nickserv password (if applicable)
+"pass"    => "m1er214", //Nickserv password (if applicable)
 //MYSQL INFO
 "sqlhost" => "localhost", //MySQL Server IP/Hostname
 "sqlport" => "3306", //MySQL Port (Leave this one alone if you don't know it)
