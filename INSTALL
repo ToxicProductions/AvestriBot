@@ -1,0 +1,99 @@
+Contents:
+1   	Requirements
+2		installation
+2.1 	How to install
+3		Modules
+3.1		Module installation
+3.2		more modules for AvestriBot
+3.3 	Developing modules
+3.3.1	Basic Development
+3.3.2	Functions you can use
+4		Special Thanks
+4.1 	BETA testers
+4.2 	Development
+4.3 	Support
+	
+1 REQUIREMENTS
+To run AvestriBot you need a few things.
+AvestriForums
+MySQL
+PHP
+PHP-CLI
+
+That's all you need, You can get MySQL, PHP and PHP-CLI from searching google.
+
+2 INSTALLATION
+You will need to read this carefully if you do not want to damage the bot and if you do not want to go searching for everything.
+2.1
+1st: Head to ./core/ and open config.php.
+You should see something like this:
+<?php
+$config = array(
+"server"  => "irc.x10hosting.com", //Server IP/Hostname
+"port"    => 6667, //Server Port
+"channel" => "#avestribot", //Channel
+"name"    => "AvestriBot", //Bot's Realname
+"nick"    => "AvestriBot", //Bot's Nickname
+"pass"    => "", //Nickserv password (if applicable)
+//MYSQL INFO
+"sqlhost" => "localhost", //MySQL Server IP/Hostname
+"sqlport" => "3306", //MySQL Port (Leave this one alone if you don't know it)
+"sqluser" => "root", //MySQL Username
+"sqlpass" => "", //MySQL Password 
+"db_name" => "gothx_community", //MySQL Database Name
+"db_pref" => "af_", //MySQL Table prefix (eg: [af_]members the text in the [] been the prefix) This can be empty
+);
+?>
+Fill in all of the details needed to set the bot up.
+2nd: Save the file and open a terminal (Linux) or CMD (Windows)
+LINUX:
+cd to the folder where bot.php is stored (AvestriBot's root)
+Type: php bot.php
+You should see the bot connect and show the IRC's MOTD etc like you would see through your client.
+If the bot crashes, it should output a message telling you what happened, we request you provide that through an issue on github to one of the developers or support staff.
+WINDOWS:
+find where you put your PHP installation and remember it.
+cd to the folder where bot.php is stored (AvestriBot's root)
+Type: PATH TO PHP\php-cgi.exe bot.php
+If that gives a 404 Not Found then type the full path to bot.php.
+You should see the bot connect and show the IRC's MOTD etc like you would see through your client.
+If the bot crashes, it should output a message telling you what happened, we request you provide that through an issue on github to one of the developers or support staff.
+3 MODULES
+Modules are what drive the bot's commands, they can be as basic as sending a message to a channel to checking if people are admins, getting data from locations, reading logs, configuring bot settings and more.
+3.1 INSTALLING MODULES
+installing modules is pretty easy.
+1st: goto ./cmd/ and open main.php
+2nd: add
+case "@COMMANDNAME":
+	include("./cmd/COMMANDNAME.php");
+	break;
+3rd: add the module file(s) to ./cmd/
+4th: test the command.
+NOTE: You should not need to restart the bot as the bot uses seperate files that are called everytime a message is recieved, main.php been one of them.
+3.2 GETTING MORE MODULES
+You can get more modules from http://avestribot.co.cc/modules/. This page has a full list of modules both official (made by the AvestriBot Team) and unofficial (made by AvestriBot users). All of them carry instructions similar to 3.1 of this INSTALL guide.
+3.3 DEVELOPING MODULES
+You can develop your own modules in a few minutes.
+3.3.1 BASIC DEVELOPMENT
+1st: create ./cmd/MODULENAME as a directory
+2nd: enter ./cmd/MODULENAME
+3rd: add a new file and call it main.php
+4th: create an INSTALL file in that folder with the details of how to install your file including adding the content to ./cmd/main.php.
+5th: edit your ./cmd/main.php and ./cmd/MODULENAME/main.php
+N.B: You can add as many files as you want into your ./cmd/MODULENAME/ directory.
+3.3.2 FUNCTIONS YOU CAN CALL
+You can call any functions, even your own, just prefix the functions with $this-> (or if they are static: self:: works too)
+get_level(<nick> as string);
+query(<mysql query> as string, [mysql_connection] as mysql connection);
+send_data(<command> as string, [message] as string);
+join_channel(<channel> as string or array);
+error(<message> as string, <level> as int);
+4 SPECIAL THANKS
+4.1 BETA TESTERS
+I would like to thank our BETA tester(s) SJWolfe (Sierra) for their participation in the development and testing.
+4.2 DEVELOPMENT
+I would like to thank our Developer(s) GothX for their participation in the extended development and testing of AvestriBot
+4.3 SUPPORT
+I would like to thank everyone for their support in the development, testing and ideas for AvestriBot.
+
+NOTE: GothX is the founder of Avestri, not me, I am one of the developers of the forum. That makes GothX a founder of AvestriBot :)

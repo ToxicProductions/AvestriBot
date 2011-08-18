@@ -3,17 +3,6 @@
 set_time_limit(0);
 ini_set("display_errors", "off");
 //END OF DO NOT MODIFY
-
-//Connection Data
-$config = array(
-"server" => "irc.x10hosting.com", //Server IP/Hostname
-"port"   => 6667, //Server Port
-"channel" => "#avestribot", //Channel
-"name"   => "AvestriBot", //Bot's Realname
-"nick"   => "AvestriBot", //Bot's Nickname
-"pass"   => "", //Nickserv password (if applicable)
-"admins" => array("GtoXic" => 10, "GothX" => 10),
-);
 //There should be no need to edit beyond this point. All commands are in ./cmd/COMMANDNAME.php and commands should be added to ./cmd/main.php
 
 /*   
@@ -28,24 +17,31 @@ $config = array(
 
    
 */
+include("./core/config.php");
 class IRCBot {
 	var $socket;
 	var $ex = array();
+	var $db;
 	function __construct($config){
 		$this->socket = fsockopen($config["server"], $config["port"]);
+		$this->db = mysql_connect("{$config['sqlhost']}:{$config['sqlport']}", $config['sqluser'], $config['sqlpass']) or die(mysql_error());
+		mysql_select_db("{$config['db_name']}") or die(mysql_error());
 		$this->login($config);
 		$this->main($config);
 	}
-
-	function login($config){
-		$this->send_data("USER", $config["nick"]." 8 * :".$config["name"]);
-		$this->send_data("NICK", $config["nick"]);
-		if(strrpos(fgets($this->socket, 256), $config['nick']." :Nickname is already in use.")){
-			$this->error("Nick in use", 4);
-			die();
-		}
-		$this->join_channel($config["channel"]);
+	function main($config){
+		include("./core/main.php");
+		$this->main($config); //WARNING: Do not remove this otherwise the bot will not function. Think of it as a poor mans loop.
 	}
+	function login($config){
+	$this->send_data("USER", $config["nick"]." 8 * :".$config["name"]);
+	$this->send_data("NICK", $config["nick"]);
+	if(strrpos(fgets($this->socket, 256), $config['nick']." :Nickname is already in use.")){
+		$this->error("Nick in use", 4);
+		die();
+	}
+	$this->join_channel($config["channel"]);
+}
 	function error($msg,$level){
 		switch($level){
 			case 1:
@@ -65,32 +61,8 @@ class IRCBot {
 				break;
 		}
 	}
-	function main($config){
-		error_reporting("E_FATAL");
-		$data = fgets($this->socket, 256);
-		echo($data);
-		flush();
-		$this->ex = explode(" ", $data);
-		if($this->ex[0] == "PING"){
-			$this->send_data("PONG", $this->ex[1]);
-		}
-		$nick = explode("!", $this->ex[0]);
-		$host = $nick[1];
-		$host = explode(" PRIVMSG ", $host);
-		$host = $host[0];
-		$nick = substr($nick[0],1);
-		$chan = $this->ex[2];
-		$fp = fopen("./$chan.log", "a");
-		fwrite($fp, $data);
-		fclose($fp);
-		$command = str_replace(array(chr(10), chr(13)), "", $this->ex[3]);
-		$command = substr($command, 1);
-		include("./cmd/main.php");
-		$this->main($config); //WARNING: Do not remove this otherwise the bot will not function. Think of it as a poor mans loop.
-	}
 	function get_level($nick){
 		include("./core/admins.php");
-		var_dump($admins);
 		foreach($admins as $n => $l){
 			if($n == $nick){
 				echo("true");
@@ -121,6 +93,14 @@ class IRCBot {
 		}else{
 			$this->send_data("JOIN", $channel);
 		}
+	}
+	function query($q, $c = ""){
+		if($c == ""){
+			$qr = mysql_query($q);
+		}else{
+			$qr = mysql_query($q, $c);
+		}
+		return($qr);
 	}
 }
 $bot = new IRCBot($config);

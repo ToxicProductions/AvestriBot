@@ -1,3 +1,3 @@
 <?php
-$admins = array("GtoXic" => 10, "GothX" => 10, "SJWolfe" => -1);
+$admins = array("GtoXic" => 10, "GothX" => 10, "Sierra" => -1);
 ?>
