@@ -1,29 +1,46 @@
 <?php
+if(array_key_exists($chan, $this->char) == true){
+	$p = $this->char[$chan];
+}else{
+	$p = "@";
+}
 if($this->get_level($nick) >= 0){
 	switch($command){
-		case '@join':
+		case "{$p}join":
 			include("./cmd/join/main.php");
 			break;
-		case '@part':
+		case "{$p}part":
 			include("./cmd/part/main.php");
 			break;
-		case '@say':
+		case "{$p}say":
 			include("./cmd/say/main.php");
 			break;
-		case '@restart':
+		case "{$p}restart":
 			include("./cmd/restart/main.php");
 			break;
-		case '@quit':
+		case "{$p}quit":
 			include("./cmd/quit/main.php");
 			break;
-		case '@about':
+		case "{$p}about":
 			include("./cmd/about/main.php");
 			break;
-		case '@whoami':
+		case "{$p}whoami":
 			include("./cmd/whoami/main.php");
 			break;
-		case '@forums':
+		case "{$p}forums":
 			include("./cmd/forums/main.php");
+			break;
+		case "{$p}games":
+			include("./cmd/games/main.php");
+			break;
+		case "{$p}list":
+			include("./cmd/list/main.php");
+			break;
+		case "{$p}ignore":
+			include("./cmd/ignore/main.php");
+			break;
+		case "{$p}prefix":
+			include("./cmd/prefix/main.php");
 			break;
 	}
 }

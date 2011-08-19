@@ -2,8 +2,9 @@
 //DO NOT MODIFY THIS!
 set_time_limit(0);
 ini_set("display_errors", "off");
+error_reporting("E_NONE");
 //END OF DO NOT MODIFY
-//There should be no need to edit beyond this point. All commands are in ./cmd/COMMANDNAME.php and commands should be added to ./cmd/main.php
+//There should be no need to edit beyond this point. All commands are in ./cmd/COMMANDNAME and commands should be added to ./cmd/main.php
 
 /*   
 
@@ -22,12 +23,14 @@ class IRCBot {
 	var $socket;
 	var $ex = array();
 	var $db;
+	var $admins;
 	var $gun = array(1 => 1, 2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1);
+	var $char = array("#avestribot" => "@", "#avestri" => "~");
 	function __construct($config){
-		error_reporting("E_NONE");
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->db = mysql_connect("{$config['sqlhost']}:{$config['sqlport']}", $config['sqluser'], $config['sqlpass']) or die(mysql_error());
 		mysql_select_db("{$config['db_name']}") or die(mysql_error());
+		$this->flush();
 		$this->login($config);
 		$this->main($config);
 	}
@@ -64,9 +67,14 @@ class IRCBot {
 				break;
 		}
 	}
+	function flush(){
+		include("./core/admins.php");
+		$this->admins = $admins;
+	}
 	function get_level($nick){
 		include("./core/admins.php");
-		foreach($admins as $n => $l){
+		$this->admins = $admins;
+		foreach($this->admins as $n => $l){
 			if($n == $nick){
 				$level = $l;
 			}

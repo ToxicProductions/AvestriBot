@@ -64,7 +64,7 @@ Modules are what drive the bot's commands, they can be as basic as sending a mes
 installing modules is pretty easy.
 1st: goto ./cmd/ and open main.php
 2nd: add
-case "@COMMANDNAME":
+case "{$p}COMMANDNAME":
 	include("./cmd/COMMANDNAME.php");
 	break;
 3rd: add the module file(s) to ./cmd/
@@ -90,9 +90,9 @@ join_channel(<channel> as string or array);
 error(<message> as string, <level> as int);
 4 SPECIAL THANKS
 4.1 BETA TESTERS
-I would like to thank our BETA tester(s) SJWolfe (Sierra) for their participation in the development and testing.
+I would like to thank our BETA tester(s) SJWolfe (Sierra) for their participation in the development and testing. SJWolfe's website is: http://alexronet.x10.mx/site/
 4.2 DEVELOPMENT
-I would like to thank our Developer(s) GothX for their participation in the extended development and testing of AvestriBot
+I would like to thank our Developer(s) GothX for their participation in the extended development and testing of AvestriBot. GothX's website is: http://avestri.co.cc/
 4.3 SUPPORT
 I would like to thank everyone for their support in the development, testing and ideas for AvestriBot.
 

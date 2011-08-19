@@ -1,6 +1,8 @@
 <?php
 $data = fgets($this->socket, 256);
 echo($data);
+$data = str_replace(chr(10), "", $data);
+$data = str_replace(chr(13), "", $data);
 flush();
 $this->ex = explode(" ", $data);
 if($this->ex[0] == "PING"){
