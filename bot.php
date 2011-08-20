@@ -26,6 +26,7 @@ class IRCBot {
 	var $admins;
 	var $gun = array(1 => 1, 2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1);
 	var $char = array("#avestribot" => "@", "#avestri" => "~");
+	var $messages = array();
 	function __construct($config){
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->db = mysql_connect("{$config['sqlhost']}:{$config['sqlport']}", $config['sqluser'], $config['sqlpass']) or die(mysql_error());
@@ -68,11 +69,11 @@ class IRCBot {
 		}
 	}
 	function flush(){
-		include("./core/admins.php");
+		$admins = parse_ini_file("./core/admins.ini");
 		$this->admins = $admins;
 	}
 	function get_level($nick){
-		include("./core/admins.php");
+		$admins = parse_ini_file("./core/admins.ini");
 		$this->admins = $admins;
 		foreach($this->admins as $n => $l){
 			if($n == $nick){
@@ -111,6 +112,39 @@ class IRCBot {
 			$qr = mysql_query($q, $c);
 		}
 		return($qr);
+	}
+	function write_php_ini($array, $file)
+	{
+		$res = array();
+		foreach($array as $key => $val)
+		{
+			if(is_array($val))
+			{
+				$res[] = "[$key]";
+				foreach($val as $skey => $sval) $res[] = "$skey = ".(is_numeric($sval) ? $sval : '"'.$sval.'"');
+			}
+			else $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
+		}
+		$this->safefilerewrite($file, implode("\r\n", $res));
+	}
+	function safefilerewrite($fileName, $dataToSave)
+	{    if ($fp = fopen($fileName, 'w'))
+		{
+			$startTime = microtime();
+			do
+			{            $canWrite = flock($fp, LOCK_EX);
+			   // If lock not obtained sleep for 0 - 100 milliseconds, to avoid collision and CPU load
+			   if(!$canWrite) usleep(round(rand(0, 100)*1000));
+			} while ((!$canWrite)and((microtime()-$startTime) < 1000));
+
+			//file was locked so now we can store information
+			if ($canWrite)
+			{            fwrite($fp, $dataToSave);
+				flock($fp, LOCK_UN);
+			}
+			fclose($fp);
+		}
+
 	}
 }
 $bot = new IRCBot($config);

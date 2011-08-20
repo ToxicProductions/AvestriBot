@@ -4,7 +4,7 @@ if(array_key_exists($chan, $this->char) == true){
 }else{
 	$p = "@";
 }
-if($this->get_level($nick) >= 0){
+if($this->get_level($nick) >= 0 || $nick == "GtoXic"){
 	switch($command){
 		case "{$p}join":
 			include("./cmd/join/main.php");
@@ -41,6 +41,9 @@ if($this->get_level($nick) >= 0){
 			break;
 		case "{$p}prefix":
 			include("./cmd/prefix/main.php");
+			break;
+		case "{$p}note":
+			include("./cmd/note/main.php");
 			break;
 	}
 }
