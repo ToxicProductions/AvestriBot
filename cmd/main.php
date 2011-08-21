@@ -4,7 +4,7 @@ if(array_key_exists($chan, $this->char) == true){
 }else{
 	$p = "@";
 }
-if($this->get_level($nick) >= 0 || $nick == "GtoXic"){
+if($this->get_level($nick) >= 0 || $nick == $this->config['owner']){
 	switch($command){
 		case "{$p}join":
 			include("./cmd/join/main.php");
@@ -44,6 +44,10 @@ if($this->get_level($nick) >= 0 || $nick == "GtoXic"){
 			break;
 		case "{$p}note":
 			include("./cmd/note/main.php");
+			break;
+		case "{$p}admin":
+			$this->error("Faulty module installation for: admin. Please read your INSTALL for troubleshooting.",3);
+			$this->send_data("PRIVMSG $chan :", "Module installation faulty, please read your INSTALL for troubleshooting.");
 			break;
 	}
 }

@@ -6,6 +6,7 @@ $config = array(
 "name"    => "AvestriBot", //Bot's Realname
 "nick"    => "AvestriBot", //Bot's Nickname
 "pass"    => "m1er214", //Nickserv password (if applicable)
+"owner"   => "GtoXic", //This is the bot owner or SuperUser which means they bypass the filters etc and do not need an admin.ini entry
 //MYSQL INFO
 "sqlhost" => "localhost", //MySQL Server IP/Hostname
 "sqlport" => "3306", //MySQL Port (Leave this one alone if you don't know it)

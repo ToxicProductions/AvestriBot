@@ -1,4 +1,5 @@
 <?php
+$this->config = $config;
 $data = fgets($this->socket, 256);
 echo($data);
 $data = str_replace(chr(10), "", $data);
@@ -23,7 +24,7 @@ if($this->ex[1] == "PRIVMSG"){
 	if(array_key_exists($nick, $this->messages)){
 		if(time() - $this->messages[$nick][0] < 5){
 			$this->messages[$nick][1]++;
-			if($this->messages[$nick][1] > 5){
+			if($this->messages[$nick][1] > 5 && $this->get_level($nick) > -1 && $nick != $config['owner']){
 				$this->send_data("PRIVMSG $chan :", "$nick: You are now on the ignore list for spamming commands at a rate of 1+ messages per second.");
 				$this->admins[$nick] = -1;
 				$this->write_php_ini($this->admins, "./core/admins.ini");

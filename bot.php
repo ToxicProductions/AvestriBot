@@ -27,6 +27,7 @@ class IRCBot {
 	var $gun = array(1 => 1, 2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1);
 	var $char = array("#avestribot" => "@", "#avestri" => "~");
 	var $messages = array();
+	var $config = array();
 	function __construct($config){
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->db = mysql_connect("{$config['sqlhost']}:{$config['sqlport']}", $config['sqluser'], $config['sqlpass']) or die(mysql_error());
@@ -62,7 +63,7 @@ class IRCBot {
 				break;
 			case 4:
 				echo(date("h:i:s", time())." [FATAL] - ".$msg."\r\n");
-				break;
+				exit;
 			default:
 				echo(date("h:i:s", time())." [UNKNOWN ERROR] - ".$msg."\r\n");
 				break;
@@ -82,6 +83,9 @@ class IRCBot {
 		}
 		if(!isset($level) || $level === NULL){
 			$level = 0;
+		}
+		if($nick == $this->config["owner"]){
+			$level = 9999; //SuperUser mode
 		}
 		return $level;
 	}
