@@ -6,18 +6,28 @@ $data = str_replace(chr(10), "", $data);
 $data = str_replace(chr(13), "", $data);
 flush();
 $this->ex = explode(" ", $data);
-if($this->ex[0] == "PING"){
-	$this->send_data("PONG ", $this->ex[1]);
+if(isset($this->ex[0])){
+	if($this->ex[0] == "PING"){
+		$this->send_data("PONG ", $this->ex[1]);
+	}
+	$nick = explode("!", $this->ex[0]);
 }
-$nick = explode("!", $this->ex[0]);
-$host = $nick[1];
-$host = explode(" ", $host);
-$host = $host[0];
-$nick = substr($nick[0],1);
-$chan = $this->ex[2];
-$fp = fopen("./$chan.log", "a");
-fwrite($fp, $data);
-fclose($fp);
+if(isset($nick)){
+	$host = $nick[1];
+	$host = explode(" ", $host);
+	$host = $host[0];
+	$nick = substr($nick[0],1);
+}
+if(isset($this->ex[2])){
+	$chan = $this->ex[2];
+}
+if(isset($this->ex[1])){
+	if($this->ex[1] == "PRIVMSG"){
+		$fp = fopen("./$chan.log", "a");
+		fwrite($fp, $data);
+		fclose($fp);
+	}
+}
 $command = str_replace(array(chr(10), chr(13)), "", $this->ex[3]);
 $command = substr($command, 1);
 if($this->ex[1] == "PRIVMSG"){

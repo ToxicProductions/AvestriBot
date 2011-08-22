@@ -2,7 +2,6 @@
 //DO NOT MODIFY THIS!
 set_time_limit(0);
 ini_set("display_errors", "off");
-error_reporting("E_NONE");
 //END OF DO NOT MODIFY
 //There should be no need to edit beyond this point. All commands are in ./cmd/COMMANDNAME and commands should be added to ./cmd/main.php
 

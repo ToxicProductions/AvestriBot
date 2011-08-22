@@ -1,53 +1,72 @@
 <?php
+$module = "";
+function error(error_level,error_message,error_file){
+	$this->error("Faulty module installation for: admin. Please read your INSTALL for troubleshooting.",3);
+	$this->send_data("PRIVMSG $chan :", "Faulty module installation for: admin. Please read your INSTALL for troubleshooting.");
+	continue;
+}
+set_error_handler("error");
 if(array_key_exists($chan, $this->char) == true){
 	$p = $this->char[$chan];
 }else{
-	$p = "@";
+	$p = "@"; //Change this if you want the default prefix to be different to @
 }
 if($this->get_level($nick) >= 0 || $nick == $this->config['owner']){
 	switch($command){
 		case "{$p}join":
+			$module = "join";
 			include("./cmd/join/main.php");
 			break;
 		case "{$p}part":
+			$module = "part";
 			include("./cmd/part/main.php");
 			break;
 		case "{$p}say":
+			$module = "say";
 			include("./cmd/say/main.php");
 			break;
 		case "{$p}restart":
+			$module = "restart";
 			include("./cmd/restart/main.php");
 			break;
 		case "{$p}quit":
+			$module = "quit";
 			include("./cmd/quit/main.php");
 			break;
 		case "{$p}about":
+			$module = "about";
 			include("./cmd/about/main.php");
 			break;
 		case "{$p}whoami":
+			$module = "whoami";
 			include("./cmd/whoami/main.php");
 			break;
 		case "{$p}forums":
+			$module = "forums";
 			include("./cmd/forums/main.php");
 			break;
 		case "{$p}games":
+			$module = "games";
 			include("./cmd/games/main.php");
 			break;
 		case "{$p}list":
+			$module = "list";
 			include("./cmd/list/main.php");
 			break;
 		case "{$p}ignore":
+			$module = "ignore";
 			include("./cmd/ignore/main.php");
 			break;
 		case "{$p}prefix":
+			$module = "prefix";
 			include("./cmd/prefix/main.php");
 			break;
 		case "{$p}note":
+			$module = "note";
 			include("./cmd/note/main.php");
 			break;
 		case "{$p}admin":
-			$this->error("Faulty module installation for: admin. Please read your INSTALL for troubleshooting.",3);
-			$this->send_data("PRIVMSG $chan :", "Module installation faulty, please read your INSTALL for troubleshooting.");
+			$module = "admin";
 			break;
 	}
 }
