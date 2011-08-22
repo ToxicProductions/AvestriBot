@@ -61,6 +61,7 @@ if($this->get_level($nick) >= 0 || $nick == $this->config['owner']){
 			break;
 		case "{$p}admin":
 			$module = "admin";
+			include("./cmd/admin/main.php");
 			break;
 	}
 }
