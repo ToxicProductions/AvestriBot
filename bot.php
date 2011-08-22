@@ -49,7 +49,7 @@ class IRCBot {
 		$this->send_data("PRIVMSG NickServ :IDENTIFY {$config['pass']}");
 		$this->join_channel($config["channel"]);
 	}
-	function error($msg,$level){
+	public function error($msg,$level){
 		switch($level){
 			case 1:
 				echo(date("h:i:s", time())." [NOTICE] - ".$msg."\r\n");
@@ -88,7 +88,7 @@ class IRCBot {
 		}
 		return $level;
 	}
-	function send_data($cmd, $msg = null){
+	public function send_data($cmd, $msg = null){
 		if($msg == null){
 			fputs($this->socket, $cmd."\r\n");
 			echo date("h:i:s", time())." - ".$cmd."\r\n";
@@ -151,4 +151,11 @@ class IRCBot {
 	}
 }
 $bot = new IRCBot($config);
+global $bot;
+function send_data($cmd, $msg=null){
+	$bot->send_data($cmd,$msg);
+}
+function error($msg,$lvl){
+	$bot->error($msg,$lvl);
+}
 ?>

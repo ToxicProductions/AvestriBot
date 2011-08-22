@@ -1,11 +1,5 @@
 <?php
 $module = "";
-function error(error_level,error_message,error_file){
-	$this->error("Faulty module installation for: admin. Please read your INSTALL for troubleshooting.",3);
-	$this->send_data("PRIVMSG $chan :", "Faulty module installation for: admin. Please read your INSTALL for troubleshooting.");
-	continue;
-}
-set_error_handler("error");
 if(array_key_exists($chan, $this->char) == true){
 	$p = $this->char[$chan];
 }else{

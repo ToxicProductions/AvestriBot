@@ -10,7 +10,6 @@ if(isset($this->ex[0])){
 	if($this->ex[0] == "PING"){
 		$this->send_data("PONG ", $this->ex[1]);
 	}
-	$nick = explode("!", $this->ex[0]);
 }
 if(isset($nick)){
 	$host = $nick[1];
@@ -26,6 +25,14 @@ if(isset($this->ex[1])){
 		$fp = fopen("./$chan.log", "a");
 		fwrite($fp, $data);
 		fclose($fp);
+		$nick = explode("!", $this->ex[0]);
+		if(isset($nick)){
+			$host = $nick[1];
+			$host = explode(" ", $host);
+			$host = $host[0];
+			$nick = substr($nick[0],1);
+		}
+
 	}
 }
 $command = str_replace(array(chr(10), chr(13)), "", $this->ex[3]);
