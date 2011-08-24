@@ -16,6 +16,7 @@ set_time_limit(0);
 
    
 */
+$i=0;
 include("./core/config.php");
 class IRCBot {
 	var $socket;
@@ -27,7 +28,6 @@ class IRCBot {
 	var $messages = array();
 	var $config = array();
 	function __construct($config){
-		error_reporting("E_ALL ^ E_NOTICE");
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->db = mysql_connect("{$config['sqlhost']}:{$config['sqlport']}", $config['sqluser'], $config['sqlpass']) or die(mysql_error());
 		mysql_select_db("{$config['db_name']}") or die(mysql_error());
@@ -142,7 +142,8 @@ class IRCBot {
 
 			//file was locked so now we can store information
 			if ($canWrite)
-			{            fwrite($fp, $dataToSave);
+			{
+				fwrite($fp, $dataToSave);
 				flock($fp, LOCK_UN);
 			}
 			fclose($fp);
@@ -157,5 +158,25 @@ function send_data($cmd, $msg=null){
 }
 function error($msg,$lvl){
 	$bot->error($msg,$lvl);
+}
+function createbot($s,$p,$n,$a,$o){
+	$i++;
+	$conf = array(
+	"server"  => $s, //Server IP/Hostname
+	"port"    => $p, //Server Port
+	"channel" => "#avestribot", //Channel
+	"name"    => $n, //Bot's Realname
+	"nick"    => $n, //Bot's Nickname
+	"pass"    => $p, //Nickserv password (if applicable)
+	"owner"   => $o, //This is the bot owner or SuperUser which means they bypass the filters etc and do not need an admin.ini entry
+	//MYSQL INFO
+	"sqlhost" => "localhost", //MySQL Server IP/Hostname
+	"sqlport" => "3306", //MySQL Port (Leave this one alone if you don't know it)
+	"sqluser" => "root", //MySQL Username
+	"sqlpass" => "", //MySQL Password 
+	"db_name" => "gothx_community", //MySQL Database Name
+	"db_pref" => "af_", //MySQL Table prefix (eg: [af_]members the text in the [] been the prefix) This can be empty
+	);
+	$bot = new IRCBot($conf);
 }
 ?>

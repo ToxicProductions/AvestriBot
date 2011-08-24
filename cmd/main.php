@@ -1,4 +1,5 @@
 <?php
+//error_reporting("E_ALL");
 $module = "";
 if(array_key_exists($chan, $this->char) == true){
 	$p = $this->char[$chan];
@@ -62,6 +63,10 @@ if($this->get_level($nick) >= 0 || $nick == $this->config['owner']){
 		case "{$p}admin":
 			$module = "admin";
 			include("./cmd/admin/main.php");
+			break;
+		case "{$p}act":
+			$module = "act";
+			include("./cmd/act/main.php");
 			break;
 	}
 }
