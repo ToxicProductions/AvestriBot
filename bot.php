@@ -162,13 +162,13 @@ function error($msg,$lvl){
 function createbot($s,$p,$n,$a,$o){
 	$i++;
 	$conf = array(
-	"server"  => $s, //Server IP/Hostname
-	"port"    => $p, //Server Port
+	"server"  => "$s", //Server IP/Hostname
+	"port"    => "$p", //Server Port
 	"channel" => "#avestribot", //Channel
-	"name"    => $n, //Bot's Realname
-	"nick"    => $n, //Bot's Nickname
-	"pass"    => $p, //Nickserv password (if applicable)
-	"owner"   => $o, //This is the bot owner or SuperUser which means they bypass the filters etc and do not need an admin.ini entry
+	"name"    => "$n", //Bot's Realname
+	"nick"    => "$n", //Bot's Nickname
+	"pass"    => "$a", //Nickserv password (if applicable)
+	"owner"   => "$o", //This is the bot owner or SuperUser which means they bypass the filters etc and do not need an admin.ini entry
 	//MYSQL INFO
 	"sqlhost" => "localhost", //MySQL Server IP/Hostname
 	"sqlport" => "3306", //MySQL Port (Leave this one alone if you don't know it)
@@ -177,6 +177,6 @@ function createbot($s,$p,$n,$a,$o){
 	"db_name" => "gothx_community", //MySQL Database Name
 	"db_pref" => "af_", //MySQL Table prefix (eg: [af_]members the text in the [] been the prefix) This can be empty
 	);
-	$bot = new IRCBot($conf);
+	$bot1 = new IRCBot($conf);
 }
 ?>
