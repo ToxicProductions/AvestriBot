@@ -19,6 +19,13 @@
 			default:
 				include("./cmd/admin/default.php");
 				break;
+			case "raw":
+				$msg = "";
+				for($i=5; $i <= (count($this->ex)); $i++){
+					$msg .= $this->ex[$i]." ";
+				}
+				$msg = substr($msg,0,strlen($msg));
+				$this->send_data($msg);
 		}
 	}else{
 		$this->send_data("PRIVMSG $chan :", "You are not an admin!");

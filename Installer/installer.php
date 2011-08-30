@@ -165,7 +165,7 @@ Press any key to continue.");
 				$l = read();
 				$mpref = $l;
 				out("OK, that's that done, I'm just creating the config.php for you now! If you need to change anything, goto BOTHOME/core/config.php");
-				$fp = fopen("./test.php", "w");
+				$fp = fopen("../core/config.php", "w");
 				$data = "<?php
 \$config = array(
 \"server\"  => \"$server\", //Server IP/Hostname

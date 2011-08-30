@@ -1,7 +1,7 @@
 <?php
-//error_reporting("E_ALL");
+error_reporting("E_ALL");
 $module = "";
-if(array_key_exists($chan, $this->char) == true){
+if(array_key_exists($chan, $this->char) == true && $chan != "#avestri"){
 	$p = $this->char[$chan];
 }else{
 	$p = "@"; //Change this if you want the default prefix to be different to @
@@ -67,6 +67,11 @@ if($this->get_level($nick) >= 0 || $nick == $this->config['owner']){
 		case "{$p}act":
 			$module = "act";
 			include("./cmd/act/main.php");
+			break;
+		case "{$p}tweet":
+			$module = "tweet";
+			echo("tweetbot loaded");
+			include("./cmd/tweet/main.php");
 			break;
 	}
 }

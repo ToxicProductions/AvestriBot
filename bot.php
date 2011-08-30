@@ -24,9 +24,10 @@ class IRCBot {
 	var $db;
 	var $admins;
 	var $gun = array(1 => 1, 2 => 1, 3 => 1, 4 => 1, 5 => 1, 6 => 1);
-	var $char = array("#avestribot" => "@", "#avestri" => "~");
+	var $char = array("#avestribot" => "@");
 	var $messages = array();
 	var $config = array();
+	var $latesttweet;
 	function __construct($config){
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->db = mysql_connect("{$config['sqlhost']}:{$config['sqlport']}", $config['sqluser'], $config['sqlpass']) or die(mysql_error());
@@ -46,6 +47,17 @@ class IRCBot {
 			$this->error("Nick in use", 4);
 			die();
 		}
+		$data = fgets($this->socket, 256);
+		$data = str_replace(chr(10), "", $data);
+		$data = str_replace(chr(13), "", $data);
+		echo($data);
+		$this->ex = explode(" ", $data);
+		if(isset($this->ex[0])){
+			if($this->ex[0] == "PING"){
+				$this->send_data("PONG ", $this->ex[1]);
+			}
+		}
+		sleep(2); // for stopping errors
 		$this->send_data("PRIVMSG NickServ :IDENTIFY {$config['pass']}");
 		$this->join_channel($config["channel"]);
 	}
@@ -180,3 +192,10 @@ function createbot($s,$p,$n,$a,$o){
 	$bot1 = new IRCBot($conf);
 }
 ?>
+<div id="load"></div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>          
+<script type="text/javascript">
+setTimeout( function() { 
+    $('#load').load('./cmd/tweet/main.php'); 
+}, 5000); 
+</script>
