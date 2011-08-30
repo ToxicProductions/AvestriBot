@@ -192,10 +192,3 @@ function createbot($s,$p,$n,$a,$o){
 	$bot1 = new IRCBot($conf);
 }
 ?>
-<div id="load"></div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>          
-<script type="text/javascript">
-setTimeout( function() { 
-    $('#load').load('./cmd/tweet/main.php'); 
-}, 5000); 
-</script>
