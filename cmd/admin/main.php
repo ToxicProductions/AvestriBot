@@ -15,6 +15,15 @@
 			case "connect":
 				include("./cmd/admin/connect.php");
 				break;
+			case "git":
+				include("./cmd/admin/git.php");
+				break;
+			case "flush":
+				include("./cmd/admin/flush.php");
+				break;
+			case "identify":
+				include("./cmd/admin/identify.php");
+				break;
 			case "help":
 			default:
 				include("./cmd/admin/default.php");
