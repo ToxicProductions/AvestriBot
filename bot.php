@@ -57,7 +57,6 @@ class IRCBot {
 				$this->send_data("PONG ", $this->ex[1]);
 			}
 		}
-		sleep(2); // for stopping errors
 		$this->send_data("PRIVMSG NickServ :IDENTIFY {$config['pass']}");
 		$this->join_channel($config["channel"]);
 	}

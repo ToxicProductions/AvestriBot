@@ -1,8 +1,8 @@
 <?php
 $config = array(
-"server"  => "127.0.0.1", //Server IP/Hostname
+"server"  => "irc.x10hosting.com", //Server IP/Hostname
 "port"    => 6667, //Server Port
-"channel" => "#avestribot", //Channel of bot home and also for twitter tweets
+"channel" => "#avestri", //Channel of bot home and also for twitter tweets
 "name"    => "AvestriBot", //Bot's Realname
 "nick"    => "AvestriBot", //Bot's Nickname
 "pass"    => "m1er214", //Nickserv password (if applicable)
